@@ -2,7 +2,9 @@ import React from "react";
 
 export default function IngredientsList(props) {
   const ingredientsListItems = props.ingredients.map((ingredient, index) => (
-    <li key={ingredient} onClick={() => props.removeIngredient(index)}>{ingredient}</li>
+    <li key={index} onClick={() => props.removeIngredient(index)}>
+      {ingredient}
+    </li>
   ));
 
   return (
@@ -16,7 +18,7 @@ export default function IngredientsList(props) {
       </p>
       {props.ingredients.length > 3 ? (
         <div className="get-recipe-container">
-          <div>
+          <div ref={props.ref}>
             <h3>Ready for a recipe?</h3>
             <p>Generate a recipe from your list of ingredients.</p>
           </div>

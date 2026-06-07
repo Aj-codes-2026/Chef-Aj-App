@@ -1,45 +1,73 @@
-import React from "react"
-import IngredientsList from "./IngredientsList"
-import AjRecipe from "./AjRecipe"
-import { getRecipeFromMistral } from "../ai"
+import React from "react";
+import IngredientsList from "./IngredientsList";
+import AjRecipe from "./AjRecipe";
+import { getRecipeFromMistral } from "../ai";
 
 export default function Main() {
-    const [ingredients, setIngredients] = React.useState([])
-    const [recipe, setRecipe] = React.useState("")
+  const [ingredients, setIngredients] = React.useState([
+    "Milk",
+    "Sugar",
+    "Eggs",
+    "Flour",
+  ]);
+  const [recipe, setRecipe] = React.useState("");
+  const recipeSection = React.useRef(null);
 
-    function addIngredient(formData) {
-        const newIngredient = formData.get("ingredient")
-       if(newIngredient !== "" && newIngredient !== " "){
-         const formattedIngredient = newIngredient.charAt(0).toUpperCase() + newIngredient.slice(1).toLowerCase()
-        setIngredients(prevIngredients => [...prevIngredients, formattedIngredient])
-       }else{
-        return
-       }
+  React.useEffect(() => {
+    if (recipe !== "" && recipeSection.current !== null) {
+      recipeSection.current.scrollIntoView({ behavior: "smooth" });
     }
-    
-    function removeIngredient(index){
-        setIngredients(prevIngredients => prevIngredients.filter((_, i) => i !== index))
-    }
+  }, [recipe]);
 
-    async function getRecipe(){
-        const generatedRecipe = await getRecipeFromMistral(ingredients)
-        setRecipe(generatedRecipe)
+  function addIngredient(formData) {
+    const newIngredient = formData.get("ingredient");
+    if (newIngredient !== "" && newIngredient !== " ") {
+      const formattedIngredient =
+        newIngredient.charAt(0).toUpperCase() +
+        newIngredient.slice(1).toLowerCase();
+      setIngredients((prevIngredients) => [
+        ...prevIngredients,
+        formattedIngredient,
+      ]);
+    } else {
+      return;
     }
+  }
 
-    return (
-        <main>
-            {ingredients.length < 4 ? (<p className="instructions">Please enter at least 4 ingredients!</p>) : null}
-            <form action={addIngredient} className="add-ingredient-form">
-                <input
-                    type="text"
-                    placeholder="e.g. Milk"
-                    aria-label="Add ingredient"
-                    name="ingredient"
-                />
-                <button>Add ingredient</button>
-            </form>
-            {ingredients.length > 0 ? <IngredientsList ingredients={ingredients} getRecipe={getRecipe} removeIngredient={removeIngredient}/> : null}
-            <div className="loading" id="loading" aria-live="polite">
+  function removeIngredient(index) {
+    setIngredients((prevIngredients) =>
+      prevIngredients.filter((_, i) => i !== index),
+    );
+  }
+
+  async function getRecipe() {
+    const generatedRecipe = await getRecipeFromMistral(ingredients);
+    setRecipe(generatedRecipe);
+  }
+
+  return (
+    <main>
+      {ingredients.length < 4 ? (
+        <p className="instructions">Please enter at least 4 ingredients!</p>
+      ) : null}
+      <form action={addIngredient} className="add-ingredient-form">
+        <input
+          type="text"
+          placeholder="e.g. Milk"
+          aria-label="Add ingredient"
+          name="ingredient"
+        />
+        <button>Add ingredient</button>
+      </form>
+      {ingredients.length > 0 ? (
+        <IngredientsList
+          ref={recipeSection}
+          ingredients={ingredients}
+          getRecipe={getRecipe}
+          removeIngredient={removeIngredient}
+        />
+      ) : null}
+      <div className="loading" id="loading" aria-live="polite">
         Loading Recipe...{" "}
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -54,7 +82,7 @@ export default function Main() {
       <div className="error" id="error" role="alert">
         Error fetching recipe!
       </div>
-            {recipe ? <AjRecipe recipe={recipe}/> : null}
-        </main>
-    )
+      {recipe ? <AjRecipe recipe={recipe} /> : null}
+    </main>
+  );
 }

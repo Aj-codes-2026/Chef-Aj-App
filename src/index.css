@@ -37,8 +37,8 @@ button:hover {
 .container {
   background: linear-gradient(
     135deg,
-    rgb(200, 200, 200, 0.15) 0%,
-    rgb(200, 200, 200, 0.05) 100%
+    rgba(200, 200, 200, 0.15) 0%,
+    rgba(200, 200, 200, 0.05) 100%
   );
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
@@ -145,9 +145,9 @@ main {
 }
 
 @keyframes roll {
-    90%{
-        opacity: .5;
-    }
+  90% {
+    opacity: 0.5;
+  }
 
   100% {
     transform: translateY(-800px) rotate(360deg);

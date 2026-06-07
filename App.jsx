@@ -1,15 +1,15 @@
-import Header from "./components/Header"
-import Main from "./components/Main"
-import Icons from "./components/Icons"
+import Header from "./components/Header";
+import Main from "./components/Main";
+import Icons from "./components/Icons";
 
 export default function App() {
   return (
-      <>
-      <Icons/>
+    <>
+      <Icons />
       <div className="container">
-        <Header/>
-        <Main/>
+        <Header />
+        <Main />
       </div>
-      </>
-  )
+    </>
+  );
 }
