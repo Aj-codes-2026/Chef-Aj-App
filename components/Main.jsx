@@ -4,12 +4,7 @@ import AjRecipe from "./AjRecipe";
 import { getRecipeFromMistral } from "../ai";
 
 export default function Main() {
-  const [ingredients, setIngredients] = React.useState([
-    "Milk",
-    "Sugar",
-    "Eggs",
-    "Flour",
-  ]);
+  const [ingredients, setIngredients] = React.useState([]);
   const [recipe, setRecipe] = React.useState("");
   const recipeSection = React.useRef(null);
 
