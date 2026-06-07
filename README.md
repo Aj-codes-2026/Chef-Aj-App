@@ -1,16 +1,50 @@
-# React + Vite
+# Chef Aj - AI Recipe Generator 👨‍🍳
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+An intelligent recipe generator that takes a list of ingredients you have and suggests delicious recipes you could make. Powered by Mistral AI.
 
-Currently, two official plugins are available:
+**[Live Demo](https://chef-app-app.vercel.app)** | **[GitHub](https://github.com/Aj-codes-2026/Chef-Aj-App)**
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## ✨ Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- 🤖 **AI-Powered Recipes** - Uses Mistral AI to generate custom recipes
+- 📱 **Fully Responsive** - Works on mobile, tablet, and desktop
+- ➕ **Easy Management** - Add/remove ingredients with one click
+- 📋 **Copy Recipes** - Copy generated recipes to clipboard instantly
+- ⚡ **Fast & Smooth** - Optimized with loading states and error handling
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🛠️ Tech Stack
+
+- **Frontend:** React + Vite
+- **Styling:** CSS with responsive design
+- **AI API:** Mistral AI (Mixtral-8x7B model)
+- **Markdown:** react-markdown
+- **Deployment:** Vercel
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+- Node.js (v16+)
+- npm
+- Mistral API key from [console.mistral.ai](https://console.mistral.ai)
+
+### Installation
+
+```bash
+# Clone repository
+git clone https://github.com/Aj-codes-2026/Chef-Aj-App.git
+cd Chef-Aj-App
+
+# Install dependencies
+npm install
+
+# Create environment file
+echo "VITE_MISTRAL_API_KEY=your_key_here" > .env.local
+
+# Run locally
+npm run dev
