@@ -21,7 +21,7 @@ export default function AjRecipe(props) {
       <ReactMarkdown>{props.recipe}</ReactMarkdown>
       <hr />
       <div className="img-container">
-        <img src="/chef.png" alt="logo" />
+        <img src="chef.png" alt="logo" />
       </div>
     </section>
   );
